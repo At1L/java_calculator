@@ -6,7 +6,6 @@ public class Main {
         //add scanner in
         Scanner in = new Scanner(System.in);
         //initialize numbers and operation
-        int first_num = 0, second_num = 0;
         int first_numerator = 0, first_denominator = 1;
         int second_numerator = 0, second_denominator = 1;
         String operation, buff;
@@ -19,6 +18,10 @@ public class Main {
             String[] buff_prc = buff.split("/");
             first_numerator = Integer.parseInt(buff_prc[0]);
             first_denominator = Integer.parseInt(buff_prc[1]);
+            if(first_numerator > 0 && first_denominator < 0){
+                first_numerator *= -1;
+                first_denominator *= -1;
+            }
         }
         System.out.println("Enter operation");
         operation = in.next();
@@ -30,6 +33,10 @@ public class Main {
             String[] buff_prc = buff.split("/");
             second_numerator = Integer.parseInt(buff_prc[0]);
             second_denominator = Integer.parseInt(buff_prc[1]);
+            if(second_numerator > 0 && second_denominator < 0){
+                second_numerator *= -1;
+                second_denominator *= -1;
+            }
         }
 
         if(first_denominator == 0 || second_denominator == 0){
@@ -73,7 +80,15 @@ public class Main {
                 System.out.println("Wrong operation");
                 return;
         }
-        System.out.println(ans_numerator + "/" + ans_denominator);
+
+        if(ans_numerator == 0){
+            System.out.println(0);
+        } else if (ans_numerator%ans_denominator == 0) {
+            System.out.println(ans_numerator/ans_denominator);
+        }
+        else{
+            System.out.println(ans_numerator + "/" + ans_denominator);
+        }
 
     }
 }
