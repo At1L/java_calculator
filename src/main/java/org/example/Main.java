@@ -71,7 +71,8 @@ public class Main {
             System.out.println(ans.numerator/ans.denominator);
         }
         else{
-            System.out.println(ans.numerator + "/" + ans.denominator);
+            if(ans.denominator % ans.numerator == 0) System.out.println("1/" + ans.denominator/ ans.numerator);
+            else System.out.println(ans.numerator + "/" + ans.denominator);
         }
     }
 
