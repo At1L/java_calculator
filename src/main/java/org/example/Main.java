@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Main {
     //class for our numbers
-    static class Num{
+    static public class Num{
         int numerator;
         int denominator;
 
@@ -14,6 +14,7 @@ public class Main {
          public Num(String num){
              try {
                  numerator = Integer.parseInt(num);
+                 denominator = 1;
              } catch (NumberFormatException e){
                  String[] buff_prc = num.split("/");
                  numerator = Integer.parseInt(buff_prc[0]);
@@ -81,6 +82,7 @@ public class Main {
                 return;
         }
     }
+
     //answer output
     public static void answerConsole(Num ans){
         if(ans.numerator == 0){
