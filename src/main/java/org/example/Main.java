@@ -4,8 +4,26 @@ import java.util.Scanner;
 public class Main {
     //class for our numbers
     static class Num{
-        int numerator = 0;
-        int denominator = 1;
+        int numerator;
+        int denominator;
+
+         public Num(){
+             numerator = 0;
+             denominator = 1;
+         };
+         public Num(String num){
+             try {
+                 numerator = Integer.parseInt(num);
+             } catch (NumberFormatException e){
+                 String[] buff_prc = num.split("/");
+                 numerator = Integer.parseInt(buff_prc[0]);
+                 denominator = Integer.parseInt(buff_prc[1]);
+                 if(numerator > 0 && denominator < 0){
+                     numerator *= -1;
+                     denominator *= -1;
+                 }
+             }
+         };
     }
     //num reader func
     public static void read_num(Num num){
@@ -64,7 +82,7 @@ public class Main {
         }
     }
     //answer output
-    public static void answer(Num ans){
+    public static void answerConsole(Num ans){
         if(ans.numerator == 0){
             System.out.println(0);
         } else if (ans.numerator%ans.denominator == 0) {
@@ -75,7 +93,19 @@ public class Main {
             else System.out.println(ans.numerator + "/" + ans.denominator);
         }
     }
-
+    public static String getAnswer(Num ans){
+        String temp;
+        if(ans.numerator == 0){
+            temp = "0";
+        } else if (ans.numerator%ans.denominator == 0) {
+            temp = String.valueOf(ans.numerator/ans.denominator);
+        }
+        else{
+            if(ans.denominator % ans.numerator == 0) temp =  "1/" + String.valueOf(ans.denominator/ ans.numerator);
+            else temp = String.valueOf(ans.numerator) + "/" + String.valueOf(ans.denominator);
+        }
+        return temp;
+    }
     public static void main(String[] args) {
         //add scanner in
         Scanner in = new Scanner(System.in);
@@ -102,7 +132,7 @@ public class Main {
         calculations(operation, first_num, second_num, ans);
 
        //answer output
-        answer(ans);
+        answerConsole(ans);
 
     }
 }
